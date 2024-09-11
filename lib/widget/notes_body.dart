@@ -18,8 +18,24 @@ class NotesBody extends StatelessWidget {
         SizedBox(
           height: 20,
         ),
-        NotesCard()
+        Expanded(child: NoteCardList())
       ],
+    );
+  }
+}
+
+class NoteCardList extends StatelessWidget {
+  const NoteCardList({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      padding: EdgeInsets.zero,
+      itemBuilder: (context, index) {
+        return NotesCard();
+      },
     );
   }
 }
