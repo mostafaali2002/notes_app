@@ -10,20 +10,24 @@ class NotesCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Container(
+        padding: const EdgeInsets.only(bottom: 24, top: 24, left: 16),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16), color: Colors.yellow),
+            borderRadius: BorderRadius.circular(16), color: Color(0xffFFCC80)),
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30),
+              padding: const EdgeInsets.symmetric(vertical: 25),
               child: ListTile(
                 title: const Text("Flutter app",
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 30,
                         fontWeight: FontWeight.w500)),
-                subtitle: Text("Flutter app development course",
-                    style: TextStyle(color: Colors.black.withOpacity(.7))),
+                subtitle: Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Text("Flutter app development course",
+                      style: TextStyle(color: Colors.black.withOpacity(.7))),
+                ),
                 trailing: IconButton(
                   onPressed: () {},
                   icon: const Icon(
