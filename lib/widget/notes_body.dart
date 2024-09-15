@@ -34,7 +34,10 @@ class NoteCardList extends StatelessWidget {
     return ListView.builder(
       padding: EdgeInsets.zero,
       itemBuilder: (context, index) {
-        return NotesCard();
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          child: NotesCard(),
+        );
       },
     );
   }
