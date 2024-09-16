@@ -9,13 +9,17 @@ class NotesBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 50,
         ),
-        CustomAppBar(text: "Notes", icon: Icon(Icons.search)),
-        SizedBox(
+        CustomAppBar(
+          text: "Notes",
+          icon: const Icon(Icons.search),
+          onPressedIcon: () {},
+        ),
+        const SizedBox(
           height: 20,
         ),
         Expanded(child: NoteCardList())
