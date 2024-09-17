@@ -22,7 +22,7 @@ class NotesBody extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        Expanded(child: NoteCardList())
+        const Expanded(child: NoteCardList())
       ],
     );
   }
