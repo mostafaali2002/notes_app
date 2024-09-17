@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubit/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/model/note_model.dart';
+
 import 'package:notes_app/widget/notes_card.dart';
 
 class NoteCardList extends StatelessWidget {
-  NoteCardList({
+  const NoteCardList({
     super.key,
   });
-  NoteModel? noteModel;
+
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: EdgeInsets.zero,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: EdgeInsets.symmetric(vertical: 10),
-          child: NotesCard(noteModel: noteModel!),
+    return BlocBuilder<NotesCubit, NotesState>(
+      builder: (context, state) {
+        List<NoteModel> notes = BlocProvider.of<NotesCubit>(context).notes!;
+        return ListView.builder(
+          padding: EdgeInsets.zero,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: NotesCard(noteModel: notes[index]),
+            );
+          },
         );
       },
     );
