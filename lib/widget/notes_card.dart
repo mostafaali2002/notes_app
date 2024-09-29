@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubit/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/model/note_model.dart';
 import 'package:notes_app/views/edit_notes_view.dart';
 
@@ -15,7 +17,7 @@ class NotesCard extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const EditNotesView(),
+              builder: (context) => EditNotesView(notesModel: noteModel),
             ));
       },
       child: Padding(
@@ -24,7 +26,7 @@ class NotesCard extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 24, top: 24, left: 16),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              color: Color(0xffFFCC80)),
+              color: const Color(0xffFFCC80)),
           child: Column(
             children: [
               Padding(
@@ -41,7 +43,10 @@ class NotesCard extends StatelessWidget {
                         style: TextStyle(color: Colors.black.withOpacity(.7))),
                   ),
                   trailing: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      noteModel.delete();
+                      BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                    },
                     icon: const Icon(
                       Icons.delete,
                       size: 32,

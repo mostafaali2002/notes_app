@@ -8,12 +8,14 @@ class CustomButton extends StatelessWidget {
     required this.width,
     required this.btnColor,
     required this.text,
+    this.isLoad = false,
   });
   final void Function()? onPressed;
   final double width;
   final Color btnColor;
   final String text;
   final BoxBorder? border;
+  final bool isLoad;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,8 +27,15 @@ class CustomButton extends StatelessWidget {
       ),
       child: MaterialButton(
         onPressed: onPressed,
-        child: Text(text,
-            style: const TextStyle(fontSize: 25, color: Colors.white)),
+        child: isLoad
+            ? const SizedBox(
+                height: 24,
+                width: 24,
+                child: CircularProgressIndicator(
+                  color: Colors.black,
+                ))
+            : Text(text,
+                style: const TextStyle(fontSize: 25, color: Colors.white)),
       ),
     );
   }
