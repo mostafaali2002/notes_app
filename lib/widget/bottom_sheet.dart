@@ -27,7 +27,10 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
           }
         },
         builder: (context, state) {
-          return const AddNotesForm();
+          return AbsorbPointer(
+            absorbing: state is AddNotesLoading ? true : false,
+            child: const AddNotesForm(),
+          );
         },
       ),
     );
