@@ -18,7 +18,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AddNotesCubit(),
-      child: BlocConsumer(
+      child: BlocConsumer<AddNotesCubit, AddNotesState>(
         listener: (context, state) {
           if (state is AddNotesFailure) {}
           if (state is AddNotesSuccess) {
@@ -29,7 +29,10 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
         builder: (context, state) {
           return AbsorbPointer(
             absorbing: state is AddNotesLoading ? true : false,
-            child: const AddNotesForm(),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: const AddNotesForm(),
+            ),
           );
         },
       ),
