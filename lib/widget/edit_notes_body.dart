@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubit/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/model/note_model.dart';
 import 'package:notes_app/widget/custom_appbar.dart';
-import 'package:notes_app/widget/custom_button.dart';
 import 'package:notes_app/widget/text_form.dart';
 
 class EditNotesBody extends StatefulWidget {
@@ -36,6 +35,10 @@ class _EditNotesBodyState extends State<EditNotesBody> {
               Icons.done,
             ),
             onPressedIcon: () {
+              widget.noteModel.title = title ?? widget.noteModel.title;
+              widget.noteModel.subTitle = subtitle ?? widget.noteModel.subTitle;
+              widget.noteModel.save();
+              BlocProvider.of<NotesCubit>(context).fetchAllNotes();
               Navigator.pop(context);
             },
           ),
@@ -61,17 +64,6 @@ class _EditNotesBodyState extends State<EditNotesBody> {
           const SizedBox(
             height: 40,
           ),
-          CustomButton(
-              onPressed: () {
-                widget.noteModel.title = title ?? widget.noteModel.title;
-                widget.noteModel.subTitle =
-                    subtitle ?? widget.noteModel.subTitle;
-                widget.noteModel.save();
-                BlocProvider.of<NotesCubit>(context).fetchAllNotes();
-              },
-              width: MediaQuery.sizeOf(context).width,
-              btnColor: const Color.fromARGB(255, 31, 130, 34),
-              text: "Edit")
         ],
       ),
     );
